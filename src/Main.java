@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
-    Student[] students = new Student[10];
+    ArrayList<Student> students = new ArrayList<>();
     RollNoCompare rollCompare = new RollNoCompare();
     StudentNameCompare nameCompare = new StudentNameCompare();
     StudentAddressCompare addressCompare = new StudentAddressCompare();
@@ -12,46 +13,43 @@ public class Main {
     public static void main(String[] args) {
         Main run = new Main(); //allows for calling of non-static methods
         //initialize the 10 students
-        run.students[0] = new Student(419054, "Marco", "Bloomingdale Dr.");
-        run.students[1] = new Student(236705, "Linus", "Metro Blvd.");
-        run.students[2] = new Student(900320, "Miranda", "Beach-way St.");
-        run.students[3] = new Student(502134, "Fiona", "Murphy Rd.");
-        run.students[4] = new Student(100385, "Esther", "Ohms St." );
-        run.students[5] = new Student(227543, "Bruno", "Presidents Dr.");
-        run.students[6] = new Student(994560, "Zyra", "Hollywood Blvd.");
-        run.students[7] = new Student(607032, "Kent", "Beach-way St.");
-        run.students[8] = new Student(199943, "Parker", "Windmill City Rd.");
-        run.students[9] = new Student(721956, "Jolyne", "Green Dolphin St." );
+        run.students.add(new Student(419054, "Marco", "Bloomingdale Dr."));
+        run.students.add(new Student(236705, "Linus", "Metro Blvd."));
+        run.students.add(new Student(900320, "Miranda", "Beach-way St."));
+        run.students.add(new Student(502134, "Fiona", "Murphy Rd."));
+        run.students.add(new Student(100385, "Esther", "Ohms St." ));
+        run.students.add(new Student(227543, "Bruno", "Presidents Dr."));
+        run.students.add(new Student(994560, "Zyra", "Hollywood Blvd."));
+        run.students.add(new Student(607032, "Kent", "Beach-way St."));
+        run.students.add(new Student(199943, "Parker", "Windmill City Rd."));
+        run.students.add(new Student(721956, "Jolyne", "Green Dolphin St." ));
 
         run.menuOptions(0);
 
     }
-    public void sort(Student[] students, Comparator<Student> comparator){
+    public void sort(ArrayList<Student> students, Comparator<Student> comparator){
         //selection sort algorithm
-        for(int i = 0; i < students.length - 1; i++){
+        for(int i = 0; i < students.size() - 1; i++){
             int min = i; // minimum index = to the current iteration of the outer loop.
-            for (int j = i + 1; j < students.length; j++) { //for each element, in unsorted part of array
-                if(comparator.compare(students[j], students[min]) < 0)  { //check if element in question is smaller than current minimum
+            for (int j = i + 1; j < students.size(); j++) { //for each element, in unsorted part of array
+                if(comparator.compare(students.get(j), students.get(min)) < 0)  { //check if element in question is smaller than current minimum
                     min = j; //update minimum element to be this value in question
                 }
             }
             //swap with element at the beginning of sub array
-            swap(students, i, min); //call the swap method
-        }
+            Student temp = students.get(min); //temp equals students @ minimum
+            students.set(min, students.get(i)); //set min of students to students @ i
+            students.set(i, temp); //set i equal to temp
 
+        }
     }
-    public void printStudents(Student[] students){
+
+    public void printStudents(ArrayList<Student> students){
         //print students to the console with the format used in overridden toString in Student.java
-        for(int i = 0; i < students.length; i++){
-            System.out.println("Student Number: " + (i + 1)  + ", " + students[i]);
+        for(int i = 0; i < students.size(); i++){
+            System.out.println("Student Number: " + (i + 1)  + ", " + students.get(i));
             System.out.println();
         }
-    }
-
-    public void swap(Object[] objects, int i, int min){ //generic swap method (this will be used for selection sort algo)
-        Object temp = objects[i]; // set value of temp equal to index i
-        objects[i] = objects[min]; //set element i = to element min which was the updated minimum element
-        objects[min] = temp; // set the value of arr @ min = temp
     }
 
     public static void showMenu(){ //prints the main menu
