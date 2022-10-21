@@ -4,7 +4,16 @@ class RollNoCompare implements Comparator<Student> {
 
     @Override
     public int compare(Student s1, Student s2) {
-        return Integer.compare(s1.getRollno(), s2.getRollno());
+        if (s1.getRollno() == s2.getRollno()){
+            return 0;
+        }
+        else if (s1.getRollno() < s2.getRollno()){
+            return -1;
+        }
+        else{
+            return 1;
+        }
+
     }
 
 }
@@ -22,6 +31,7 @@ class StudentAddressCompare implements Comparator<Student> {
 
     @Override
     public int compare(Student s1, Student s2) {
+
         return s1.getAddress().compareTo(s2.getAddress());
     }
 
