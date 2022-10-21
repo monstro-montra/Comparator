@@ -4,19 +4,24 @@ import java.util.Scanner;
 
 public class Main {
 
-    Student[] students = new Student[5];
+    Student[] students = new Student[10];
     RollNoCompare rollCompare = new RollNoCompare();
     StudentNameCompare nameCompare = new StudentNameCompare();
     StudentAddressCompare addressCompare = new StudentAddressCompare();
 
     public static void main(String[] args) {
         Main run = new Main(); //allows for calling of non-static methods
-        //initialize the 5 students
+        //initialize the 10 students
         run.students[0] = new Student(419054, "Marco", "Bloomingdale Dr.");
         run.students[1] = new Student(236705, "Linus", "Metro Blvd.");
         run.students[2] = new Student(900320, "Miranda", "Beach-way St.");
         run.students[3] = new Student(502134, "Fiona", "Murphy Rd.");
         run.students[4] = new Student(100385, "Esther", "Ohms St." );
+        run.students[5] = new Student(227543, "Bruno", "Presidents Dr.");
+        run.students[6] = new Student(994560, "Zyra", "Hollywood Blvd.");
+        run.students[7] = new Student(607032, "Kent", "Beach-way St.");
+        run.students[8] = new Student(199943, "Parker", "Windmill City Rd.");
+        run.students[9] = new Student(721956, "Jolyne", "Green Dolphin St." );
 
         run.menuOptions(0);
 
