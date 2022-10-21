@@ -9,16 +9,14 @@ public class Main {
     StudentNameCompare nameCompare = new StudentNameCompare();
     StudentAddressCompare addressCompare = new StudentAddressCompare();
 
-
-
-
     public static void main(String[] args) {
-        Main run = new Main();
-        run.students[0] = new Student(419054, "Marco", "500 Bloomingdale Dr.");
-        run.students[1] = new Student(236705, "Linus", "462 Metro Blvd.");
-        run.students[2] = new Student(900320, "Miranda", "7462 Beachway St.");
-        run.students[3] = new Student(502134, "Fiona", "903 Murphy Rd.");
-        run.students[4] = new Student(100385, "Esther", "34 Ohms St." );
+        Main run = new Main(); //allows for calling of non-static methods
+        //initialize the 5 students
+        run.students[0] = new Student(419054, "Marco", "Bloomingdale Dr.");
+        run.students[1] = new Student(236705, "Linus", "Metro Blvd.");
+        run.students[2] = new Student(900320, "Miranda", "Beach-way St.");
+        run.students[3] = new Student(502134, "Fiona", "Murphy Rd.");
+        run.students[4] = new Student(100385, "Esther", "Ohms St." );
 
         run.menuOptions(0);
 
@@ -33,13 +31,14 @@ public class Main {
                 }
             }
             //swap with element at the beginning of sub array
-            swap(students, i, min);
+            swap(students, i, min); //call the swap method
         }
 
     }
     public void printStudents(Student[] students){
+        //print students to the console with the format used in overridden toString in Student.java
         for(int i = 0; i < students.length; i++){
-            System.out.println("Student Number: " + (i + 1)  + ", " +students[i]);
+            System.out.println("Student Number: " + (i + 1)  + ", " + students[i]);
             System.out.println();
         }
     }
@@ -50,7 +49,7 @@ public class Main {
         objects[min] = temp; // set the value of arr @ min = temp
     }
 
-    public static void showMenu(){
+    public static void showMenu(){ //prints the main menu
         System.out.println("1.) Print Student List");
         System.out.println("2.) Sort by Roll number");
         System.out.println("3.) Sort by Name");
@@ -59,51 +58,51 @@ public class Main {
     }
 
     public void menuOptions(int menuChoice){
-        Main run = new Main();
+        Main run = new Main(); //allows for running of static methods
         Scanner in = new Scanner(System.in); //create new scanner object called 'in'
         do{
             showMenu(); //call showMenu method
             try{
                 if(in.hasNextInt()){ // if in has an int
-                    menuChoice = in.nextInt();
+                    menuChoice = in.nextInt(); //set menuChoice = user input integer
                     switch(menuChoice) {
                         case 1: //run printStudents method
                             run.printStudents(students);
                             break;
                         case 2: //run sort method with rollCompare comparator
-                            run.sort(students, rollCompare);
+                            sort(students, rollCompare);
                             System.out.println("Sorted by Roll number!\n");
                             break;
                         case 3: //run sort method with nameCompare comparator
-                            run.sort(students, nameCompare);
+                            sort(students, nameCompare);
                             System.out.println("Sorted by name!\n");
                             break;
                         case 4: //run sort method with addressCompare comparator
-                            run.sort(students, addressCompare);
+                            sort(students, addressCompare);
                             System.out.println("Sorted by address!\n");
                             break;
                         case 5: //exit the program
                             System.exit(0);
                             break;
-                        default:
+                        default: //default case. throw an error
                             if (menuChoice > 6 || menuChoice < 1){
                                 throw new Exception("Invalid menu option.");
                             }
                     }
                 }
                 else {
-                    throw new InputMismatchException("Not an integer!");
+                    throw new InputMismatchException("Not an integer!"); //throws InputMismatchException since the user did not put in an integer
                 }
             } catch (InputMismatchException excpt){
-                System.out.println(excpt.getMessage());
+                System.out.println(excpt.getMessage()); //get message from InputMismatchException
                 System.out.println("Please try again");
                 in.next();
 
             } catch (Exception er){
-                System.out.println(er.getMessage());
+                System.out.println(er.getMessage()); //get message from Exception
                 System.out.println("Please try again");
             }
-        }while (menuChoice !=5);
+        }while (menuChoice !=5); //while the menu choice is not five. (if it is the loop closes and so does the program)
 
     }
 }
