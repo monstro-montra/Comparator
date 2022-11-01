@@ -73,15 +73,15 @@ public class Main {
                             run.printStudents(students);
                             break;
                         case 2: //run sort method with rollCompare comparator
-                            sort(students, rollCompare);
+                            sort(students, rollCompare); //call sort method
                             System.out.println("Sorted by Roll number!\n");
                             break;
                         case 3: //run sort method with nameCompare comparator
-                            sort(students, nameCompare);
+                            sort(students, nameCompare); //call sort method
                             System.out.println("Sorted by name!\n");
                             break;
                         case 4: //run sort method with addressCompare comparator
-                            sort(students, addressCompare);
+                            sort(students, addressCompare); //call sort method
                             System.out.println("Sorted by address!\n");
                             break;
                         case 5: //exit the program

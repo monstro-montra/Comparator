@@ -1,7 +1,7 @@
 public class Student {
-    private int rollno;
-    private String name;
-    private String address;
+    private final int rollno;
+    private final String name;
+    private final String address;
 
     public Student (int studentNumber, String studentName, String studentAddress){ //student constructor
         rollno = studentNumber;
@@ -12,15 +12,10 @@ public class Student {
 
 
 
-    //getters and setters
+    //getters only as this will be read-only. no write
     public int getRollno(){
 
         return this.rollno;
-    }
-
-    public void setRollno(int studentNumber){
-
-        this.rollno = studentNumber;
     }
 
     public String getName(){
@@ -28,19 +23,9 @@ public class Student {
         return this.name;
     }
 
-    public void setName(String studentName){
-
-        this.name = studentName;
-    }
-
     public String getAddress(){
 
         return this.address;
-    }
-
-    public void setAddress (String studentAddress){
-
-        this.address = studentAddress;
     }
 
     @Override
