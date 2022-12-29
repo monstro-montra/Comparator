@@ -12,17 +12,17 @@ public class Main {
 
     public static void main(String[] args) {
         Main run = new Main(); //allows for calling of non-static methods
-        //initialize the 10 students
-        run.students.add(new Student(419054, "Marco", "Bloomingdale Dr."));
-        run.students.add(new Student(236705, "Linus", "Metro Blvd."));
-        run.students.add(new Student(900320, "Miranda", "Beach-way St."));
-        run.students.add(new Student(502134, "Fiona", "Murphy Rd."));
-        run.students.add(new Student(100385, "Esther", "Ohms St." ));
-        run.students.add(new Student(227543, "Bruno", "Presidents Dr."));
-        run.students.add(new Student(994560, "Zyra", "Hollywood Blvd."));
-        run.students.add(new Student(607032, "Kent", "Beach-way St."));
-        run.students.add(new Student(199943, "Parker", "Windmill City Rd."));
-        run.students.add(new Student(721956, "Jolyne", "Green Dolphin St." ));
+        //initialize 10 students
+        run.students.add(new Student(112034, "Alex", "Oaks Dr."));
+        run.students.add(new Student(142706, "Melina", "Westside Way."));
+        run.students.add(new Student(903345, "Johnathan", "Pine Tree Blvd."));
+        run.students.add(new Student(327164, "Julia", "Murphy Rd."));
+        run.students.add(new Student(620355, "Mike", "Bloomingdale Dr." ));
+        run.students.add(new Student(823512, "Kevin", "Martin Luther St."));
+        run.students.add(new Student(945162, "Jason", "Hollywood Blvd."));
+        run.students.add(new Student(202356, "Lorenzo", "Mario Blvd."));
+        run.students.add(new Student(899931, "Amber", "Riverdale Garden Rd."));
+        run.students.add(new Student(322456, "Vivian", "Blue Waters St." ));
 
         run.menuOptions(0);
 
@@ -44,6 +44,17 @@ public class Main {
         }
     }
 
+    public boolean checkIfAscending(ArrayList<Student> students, Comparator<Student> comparator){
+        for (int i = 0; i < students.size() - 1; i++){
+            if(comparator.compare(students.get(i), students.get(i+1)) > 0){
+                System.out.println("List of students is not in ascending order.");
+                return false;
+            }
+        }
+        System.out.println("List of students is in ascending order.");
+        return true;
+    }
+
     public void printStudents(ArrayList<Student> students){
         //print students to the console with the format used in overridden toString in Student.java
         for(int i = 0; i < students.size(); i++){
@@ -57,7 +68,8 @@ public class Main {
         System.out.println("2.) Sort by Roll number");
         System.out.println("3.) Sort by Name");
         System.out.println("4.) Sort by Address");
-        System.out.println("5.) Exit");
+        System.out.println("5.) Check if sorted in ascending by number");
+        System.out.println("6.) Exit");
     }
 
     public void menuOptions(int menuChoice){
@@ -68,29 +80,30 @@ public class Main {
             try{
                 if(in.hasNextInt()){ // if in has an int
                     menuChoice = in.nextInt(); //set menuChoice = user input integer
-                    switch(menuChoice) {
-                        case 1: //run printStudents method
-                            run.printStudents(students);
-                            break;
-                        case 2: //run sort method with rollCompare comparator
+                    switch (menuChoice) {
+                        case 1 -> //run printStudents method
+                                run.printStudents(students);
+                        case 2 -> { //run sort method with rollCompare comparator
                             sort(students, rollCompare); //call sort method
                             System.out.println("Sorted by Roll number!\n");
-                            break;
-                        case 3: //run sort method with nameCompare comparator
+                        }
+                        case 3 -> { //run sort method with nameCompare comparator
                             sort(students, nameCompare); //call sort method
                             System.out.println("Sorted by name!\n");
-                            break;
-                        case 4: //run sort method with addressCompare comparator
+                        }
+                        case 4 -> { //run sort method with addressCompare comparator
                             sort(students, addressCompare); //call sort method
                             System.out.println("Sorted by address!\n");
-                            break;
-                        case 5: //exit the program
-                            System.exit(0);
-                            break;
-                        default: //default case. throw an error
-                            if (menuChoice > 6 || menuChoice < 1){
+                        }
+                        case 5 -> //run the check if ascending method to see if arraylist is sorted in ascending.
+                                checkIfAscending(students, rollCompare);
+                        case 6 -> //exit program
+                                System.exit(0);
+                        default -> { //default case. throw an error
+                            if (menuChoice > 7 || menuChoice < 1) {
                                 throw new Exception("Invalid menu option.");
                             }
+                        }
                     }
                 }
                 else {
@@ -105,7 +118,7 @@ public class Main {
                 System.out.println(er.getMessage()); //get message from Exception
                 System.out.println("Please try again");
             }
-        }while (menuChoice !=5); //while the menu choice is not five. (if it is the loop closes and so does the program)
+        }while (menuChoice != 6); //while the menu choice is not six. (if it is the loop closes and so does the program)
 
     }
 }
